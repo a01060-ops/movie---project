@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>키가 필요 없는 영화 추천</title>
+    <style>
+        body { background: #141414; color: white; text-align: center; font-family: sans-serif; padding-top: 50px; }
+        select, button { padding: 10px; font-size: 16px; margin: 5px; }
+        button { background: #E50914; color: white; border: none; cursor: pointer; }
+        #result { margin-top: 30px; }
+        img { width: 200px; border-radius: 8px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>🎬 키 없는 영화 추천기</h1>
+    
+    <select id="genre">
+        <option value="action">액션</option>
+        <option value="romance">로맨스</option>
+        <option value="comedy">코미디</option>
+    </style>
+    </select>
+    <button onclick="getMovie()">추천받기</button>
+
+    <div id="result">
+        <h2 id="title"></h2>
+        <img id="poster" src="" alt="">
+    </div>
+
+    <script>
+        // 코드 내부에 영화 데이터를 미리 저장 (API 키 필요 없음)
+        const movieDatabase = {
+            action: [
+                { title: "매드맥스: 분노의 도로", poster: "https://image.tmdb.org/t/p/w500/b9g7wID60705626R7PugHd6wUrn.jpg" },
+                { title: "존 윅", poster: "https://image.tmdb.org/t/p/w500/j5He0gSAn76OHg7IdvYfS6vXv9m.jpg" }
+            ],
+            romance: [
+                { title: "어바웃 타임", poster: "https://image.tmdb.org/t/p/w500/i99I8p36LofvN0767R69V79f8be.jpg" },
+                { title: "라라랜드", poster: "https://image.tmdb.org/t/p/w500/ylX76eeV0m6IEvA47SgL4wI2woc.jpg" }
+            ],
+            comedy: [
+                { title: "극한직업", poster: "https://image.tmdb.org/t/p/w500/6A77W5P0Kq3fG25Z45B2A6uI2F0.jpg" }
+            ]
+        };
+
+        function getMovie() {
+            const genre = document.getElementById('genre').value;
+            const movies = movieDatabase[genre];
+
+            // 랜덤으로 하나 고르기
+            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+
+            // 화면에 보여주기
+            document.getElementById('title').innerText = randomMovie.title;
+            document.getElementById('poster').src = randomMovie.poster;
+        }
+    </script>
+</body>
+</html>
